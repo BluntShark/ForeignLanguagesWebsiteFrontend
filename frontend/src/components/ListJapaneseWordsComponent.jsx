@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 const ListJapaneseWordsComponent = () => {
     
     const [japaneseWords, setJapaneseWords] = useState([])
-    const navigator = useNavigate;
+    const navigator = useNavigate();
 
     useEffect(() => {
         listJapaneseWords().then((response) => {
@@ -15,9 +15,9 @@ const ListJapaneseWordsComponent = () => {
         })
     }, [])
 
-function addNewJapaneseWord(){
-    navigator('/add-japaneseWord')
-}
+    function addNewJapaneseWord(){
+        navigator('/add-japaneseWord')
+    }
   return (
     <div className='container'>
         <h2 className='text-center'>List of japanese words</h2>
