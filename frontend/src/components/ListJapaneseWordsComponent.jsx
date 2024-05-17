@@ -44,7 +44,7 @@ const ListJapaneseWordsComponent = () => {
                 {
                     currentWords.map(word => 
                         <div key={word.id} className='col-md-4 mb-4'>
-                            <div className='card'>
+                            <div className='card-front'>
                                 <div className='card-body'>
                                     <p className='card-text'>Hiragana: {word.hiragana}</p>
                                     <p className='card-text'>Katakana: {word.katakana}</p>

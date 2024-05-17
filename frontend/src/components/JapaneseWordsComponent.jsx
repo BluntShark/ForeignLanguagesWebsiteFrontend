@@ -96,7 +96,7 @@ const JapaneseWordsComponent = () => {
                 </input>
               </div>
 
-              <button className='btn btn-success' onClick={saveJapaneseWord}>Submit</button>
+              <button className='btn btn-dark' onClick={saveJapaneseWord}>Submit</button>
             </form>
           </div>
         </div>
