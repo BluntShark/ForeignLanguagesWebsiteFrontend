@@ -1,0 +1,40 @@
+.footer{
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: rgb(96, 96, 96);
+    position:sticky;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    flex: 0 0 auto;
+}
+.card{
+  border: 2px solid rgb(107, 90, 90);
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px rgba(131, 115, 115, 0.334);
+  padding: 5px;
+  margin: 10px;
+  text-align: left;
+  max-width: 550px;
+  max-height: 350px;
+  min-height: 270px;
+  background-color: rgb(229, 205, 241);
+}
+.card-text{
+  color: black;
+}
+.pagination-buttons {
+  border: 2px solid rgb(107, 90, 90);
+  border-radius: 10px;
+  color: rgb(83, 80, 80);
+  text-align: center;
+  text-decoration: none;
+  padding: 15px 32px;
+  font-size: 16px;
+}
+.button{
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+  gap: 30px;
+}

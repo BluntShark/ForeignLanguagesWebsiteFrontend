@@ -20,7 +20,7 @@ function App() {
           {/* //http://localhost:3000/add-japaneseWords */}
           <Route path='/add-japaneseWord' element = { <JapaneseWords /> }></Route>
         </Routes>
-        <FooterComponent />
+        {/* <FooterComponent /> */}
       </BrowserRouter>
     </>
   )

@@ -1,53 +1,69 @@
-import React, {useEffect, useState} from 'react'
-import { listJapaneseWords } from '../services/JapaneseWordService'
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import { listJapaneseWords } from '../services/JapaneseWordService';
+import { useNavigate } from 'react-router-dom';
 
 const ListJapaneseWordsComponent = () => {
-    
-    const [japaneseWords, setJapaneseWords] = useState([])
+    const [japaneseWords, setJapaneseWords] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const wordsPerPage = 6;
     const navigator = useNavigate();
 
     useEffect(() => {
+        fetchJapaneseWords();
+    }, []);
+
+    const fetchJapaneseWords = () => {
         listJapaneseWords().then((response) => {
             setJapaneseWords(response.data);
         }).catch(error => {
             console.error(error);
-        })
-    }, [])
+        });
+    };
 
-    function addNewJapaneseWord(){
-        navigator('/add-japaneseWord')
-    }
-  return (
-    <div className='container'>
-        <h2 className='text-center'>List of japanese words</h2>
-        <button className='btn btn-secondary mb-2' onClick={addNewJapaneseWord}>Add word</button>
-        <table className='table table-striped table-bordered'>
-            <thead>
-                <tr>
-                    <th>hiragana</th>
-                    <th>katakana</th>
-                    <th>kanji</th>
-                    <th>example</th>
-                    <th>translation</th>
-                </tr>
-            </thead>
-            <tbody>
+    const addNewJapaneseWord = () => {
+        navigator('/add-japaneseWord');
+    };
+
+    const nextPage = () => {
+        setCurrentPage((prevPage) => Math.min(prevPage + 1, Math.ceil(japaneseWords.length / wordsPerPage)));
+    };
+
+    const prevPage = () => {
+        setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+    };
+
+    const indexOfLastWord = currentPage * wordsPerPage;
+    const indexOfFirstWord = indexOfLastWord - wordsPerPage;
+    const currentWords = japaneseWords.slice(indexOfFirstWord, indexOfLastWord);
+
+    return (
+        <div className='container'>
+            <h2 className='text-center'>List of Japanese Words</h2>
+            <button className='btn btn-secondary mb-2' onClick={addNewJapaneseWord}>Add Word</button>
+            <div className='row'>
                 {
-                    japaneseWords.map(japaneseWords => 
-                        <tr key={japaneseWords.id}>
-                            <td>{japaneseWords.hiragana}</td>
-                            <td>{japaneseWords.katakana}</td>
-                            <td>{japaneseWords.kanji}</td>
-                            <td>{japaneseWords.example}</td>
-                            <td>{japaneseWords.translation}</td>
-                        </tr>
+                    currentWords.map(word => 
+                        <div key={word.id} className='col-md-4 mb-4'>
+                            <div className='card'>
+                                <div className='card-body'>
+                                    <p className='card-text'>Hiragana: {word.hiragana}</p>
+                                    <p className='card-text'>Katakana: {word.katakana}</p>
+                                    <p className='card-text'>Kanji: {word.kanji}</p>
+                                    <p className='card-text'>Example: {word.example}</p>
+                                    <p className='card-text'>Translation: {word.translation}</p>
+                                </div>
+                            </div>
+                        </div>
                     )
                 }
-            </tbody>
-        </table>
-    </div>
-  )
-}
+            </div>
+            <div className='button '>
+                <button className='pagination-buttons' onClick={prevPage} disabled={currentPage === 1}>Previous</button>
+                <button className='pagination-buttons' onClick={nextPage} disabled={currentPage === Math.ceil(japaneseWords.length / wordsPerPage)}>Next</button>
+            </div>
+            <br/ ><br/>
+        </div>
+    );
+};
 
-export default ListJapaneseWordsComponent
+export default ListJapaneseWordsComponent;
