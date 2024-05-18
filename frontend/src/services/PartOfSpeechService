@@ -1,7 +1,0 @@
-import axios from 'axios';
-
-const PARTS_OF_SPEECH_API_BASE_URL = 'http://localhost:8080/partOfSpeeches';
-
-export const listPartsOfSpeech = () => {
-    return axios.get(PARTS_OF_SPEECH_API_BASE_URL);
-};

@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { listWords } from '../services/WordService';
-import { listJapaneseWords } from '../services/JapaneseWordService';
+import { listWords } from '../../services/WordService';
 
 const ListWordsComponent = () => {
     const [words, setWords] = useState([])
-    const [japaneseWords, setJapaneseWords] = useState([]);
 
     const [currentPage, setCurrentPage] = useState(1);
     const wordsPerPage = 6;
@@ -18,17 +16,6 @@ const ListWordsComponent = () => {
     const fetchWords = () => {
         listWords().then((response) => {
             setWords(response.data);
-        }).catch(error => {
-            console.error(error);
-        });
-    };
-    useEffect(() => {
-        fetchJapaneseWords();
-    }, []);
-
-    const fetchJapaneseWords = () => {
-        listJapaneseWords().then((response) => {
-            setJapaneseWords(response.data);
         }).catch(error => {
             console.error(error);
         });
@@ -59,22 +46,13 @@ const ListWordsComponent = () => {
                     <div key={word.id} className='col-md-4 mb-4'>
                         <div className='card'>
                             <div className='card-body'>
-                                <p className='card-text'>Word in Russian: {word.wordInRussian}</p>
-                                <p className='card-text'>Transcription: {word.transcription}</p>
-                                {word.japaneseWord && (
-                                    <div className='card-text'>
-                                        <p>Kanji: {word.japaneseWord.kanji}</p>
-                                        <p>Hiragana: {word.japaneseWord.hiragana}</p>
-                                        <p>Katakana: {word.japaneseWord.katakana}</p>
-                                        <p>Example: {word.japaneseWord.example}</p>
-                                        <p>Translation: {word.japaneseWord.translation}</p>
-                                    </div>
-                                )}
-                                {word.partOfSpeech && (
-                                    <div className='card-text'>
-                                        <p>Part of Speech: {word.partOfSpeech.partOfSpeech}</p>
-                                    </div>
-                                )}
+                                <p className='card-text'>Слово: {word.wordInRussian}</p>
+                                <p className='card-text'>Транскрипция: {word.transcription}</p>
+                                <p className='card-text'>Хирагана: {word.hiragana}</p>
+                                <p className='card-text'>Катакана: {word.katakana}</p>
+                                <p className='card-text'>Канзи: {word.kanji}</p>
+                                <p className='card-text'>Пример: {word.example}</p>
+                                <p className='card-text'>Перевод: {word.translation}</p>
                             </div>
                         </div>
                     </div>
