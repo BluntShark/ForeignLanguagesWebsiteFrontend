@@ -1,27 +1,31 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
-import dictionaryPicture from '../assets/dictionary.jpg'
 import './Home.css'
 import '../App.css'
 
-const Home = () => {
+const Home = ({
+    imgSrc,
+    ingAlt,
+    title,
+    description
+}) => {
   return (
     <div className='App'>
         <br /><br />
     <div className='card-container'>
         <Link to="/words">
         <img
-          src={dictionaryPicture}
-          alt='Dictionary'
+          src={imgSrc}
+          alt={ingAlt}
           className='card-image'
         />
       </Link>
-        <h3 className='card-title'>Словарь</h3>
-        <h9 className='card-description'>Содержит слова, перевод и примеры</h9>
+        <h3 className='card-title'>{title}</h3>
+        <p className='card-description'>{description}</p>
+        <br />
     </div>
     <br /><br /><br /><br /><br />
     </div>
-    
   )
 }
 

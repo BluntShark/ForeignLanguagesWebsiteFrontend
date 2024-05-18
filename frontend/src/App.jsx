@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import WordsComponent from './components/Words/WordsComponent'
 import ListWordsComponent from './components/Words/ListWordsComponent'
-import Home from './components/Home'
+import { HomePage } from './components/HomePage'
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
         <HeaderComponent />
         <Routes>
           {/* //http://localhost:3000 */}
-          <Route path='/' element = { <Home /> }></Route>
+          <Route path='/' element = { <HomePage /> }></Route>
 
           {/* //http://localhost:3000/words */}
           <Route path='/words' element = { <ListWordsComponent/> }></Route>

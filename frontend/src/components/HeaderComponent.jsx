@@ -4,8 +4,8 @@ const HeaderComponent = () => {
   return (
     <div>
         <header>
-          <nav class="navbar navbar-expand-sm bg-light">
-          <div class="col-3">
+          <nav className="navbar navbar-expand-sm bg-light">
+          <div className="col-3">
             <h2 className='text-center text-muted'> Япония</h2>
           </div>
         </nav>
