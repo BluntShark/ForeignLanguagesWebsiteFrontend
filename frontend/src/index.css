@@ -1,12 +1,17 @@
+.App{
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
 .footer{
-    margin-top: 1rem;
-    padding: 1rem;
-    background-color: rgb(96, 96, 96);
-    position:sticky;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    flex: 0 0 auto;
+  margin-top: auto;
+  padding: 25px 0;
+  background-color: rgb(84, 83, 83);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  height: 50px;
 }
 .card-body{
   text-align: left;

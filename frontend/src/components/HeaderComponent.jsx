@@ -4,9 +4,11 @@ const HeaderComponent = () => {
   return (
     <div>
         <header>
-            <nav className='navbar navbar-dark bg-dark'>
-                <a className='navbar-brand' href='https://www.youtube.com/watch?v=znziYrT6pV8'>Japanese word managment</a>
-            </nav>
+          <nav class="navbar navbar-expand-sm bg-light">
+          <div class="col-3">
+            <h2 className='text-center text-muted'> Япония</h2>
+          </div>
+        </nav>
         </header>
     </div>
   )

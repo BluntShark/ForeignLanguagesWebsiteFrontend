@@ -39,7 +39,7 @@ const ListWordsComponent = () => {
 
     return (
         <div className='container'>
-            <h2 className='text-center'>List of Words</h2>
+            <h2 className='text-center text-muted'>Словарь</h2>
             <button className='btn btn-secondary mb-2' onClick={addNewWord}>Add Word</button>
             <div className='row'>
                 {currentWords.map(word => (

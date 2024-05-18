@@ -7,9 +7,8 @@ import WordsComponent from './components/Words/WordsComponent'
 import ListWordsComponent from './components/Words/ListWordsComponent'
 
 function App() {
-
   return (
-    <>
+    <div className="App">
       <BrowserRouter>
         <HeaderComponent />
         <Routes>
@@ -24,7 +23,7 @@ function App() {
         </Routes>
         {/* <FooterComponent /> */}
       </BrowserRouter>
-    </>
+    </div>
   )
 }
 
