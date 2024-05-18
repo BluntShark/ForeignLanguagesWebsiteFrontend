@@ -8,26 +8,31 @@
     width: 100%;
     flex: 0 0 auto;
 }
-.card-front{
-  border: 2px solid rgb(107, 90, 90);
-  border-radius: 10px;
-  box-shadow: 5px 5px 5px rgba(131, 115, 115, 0.334);
-  padding: 5px;
-  margin: 10px;
+.card-body{
   text-align: left;
-  max-width: 550px;
-  max-height: 350px;
-  min-height: 270px;
-  background-color: rgb(229, 205, 241);
 }
 .card{
-  background-color: rgb(229, 205, 241);
-  border: 2px solid rgb(107, 90, 90);
-  border-radius: 10px;
-  box-shadow: 5px 5px 5px rgba(131, 115, 115, 0.334);
+  max-width: 450px;
+  max-height: 370px;
+  min-height: 320px;
+  background-color: rgba(206, 231, 244, 0.926);
+  border: 2px solid rgb(100, 93, 93);
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px rgba(157, 146, 146, 0.334);
+}
+.card-add{
+  max-width:500px;
+  min-height: 670px;
+  background-color: rgba(206, 231, 244, 0.926);
+  border: 2px solid rgb(100, 93, 93);
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px rgba(157, 146, 146, 0.334);
 }
 .card-text{
-  color: black;
+  color: rgb(65, 65, 65);
+  padding-left: 20px;
+  margin-left: 10px;
+  text-shadow: 5px 5px 5px rgb(184, 182, 182);
 }
 .pagination-buttons {
   border: 2px solid rgb(107, 90, 90);

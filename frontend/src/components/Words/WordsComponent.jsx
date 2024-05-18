@@ -27,8 +27,8 @@ const WordsComponent = () => {
         <div className='container'>
             <br /><br />
             <div className='row'>
-                <div className='card col-md-6 offset-md-3'>
-                    <h2 className='text-center'>Add Word</h2>
+                <div className='card-add col-md-8 offset-md-4'>
+                    <h2 className='text-center'>Добавить слово</h2>
                     <div className='card-body'>
                         <form>
                             <div className='form-group mb-2'>
@@ -103,13 +103,17 @@ const WordsComponent = () => {
                                     onChange={(e) => setTranslation(e.target.value)}
                                 />
                             </div>
-                            <button className='btn btn-dark' onClick={saveWord}>Submit</button>
+                            <br />
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                                <button className='btn btn-secondary border-radius-sm' onClick={saveWord}>Submit</button>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
+            <br /><br />
         </div>
-    );
+);
 }
 
 export default WordsComponent;
