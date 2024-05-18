@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { listJapaneseWords } from '../services/JapaneseWordService';
 import { useNavigate } from 'react-router-dom';
+import { listWords } from '../services/WordService';
 
 const ListJapaneseWordsComponent = () => {
     const [japaneseWords, setJapaneseWords] = useState([]);
+
     const [currentPage, setCurrentPage] = useState(1);
     const wordsPerPage = 6;
     const navigator = useNavigate();
@@ -38,7 +40,7 @@ const ListJapaneseWordsComponent = () => {
 
     return (
         <div className='container'>
-            <h2 className='text-center'>List of Japanese Words</h2>
+            <h2 className='text-center'>List of Words</h2>
             <button className='btn btn-secondary mb-2' onClick={addNewJapaneseWord}>Add Word</button>
             <div className='row'>
                 {
