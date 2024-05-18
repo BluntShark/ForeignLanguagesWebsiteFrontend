@@ -15,7 +15,7 @@
   max-width: 450px;
   max-height: 370px;
   min-height: 320px;
-  background-color: rgba(206, 231, 244, 0.926);
+  background-color: #80A28E;
   border: 2px solid rgb(100, 93, 93);
   border-radius: 20px;
   box-shadow: 5px 5px 5px rgba(157, 146, 146, 0.334);
@@ -23,16 +23,16 @@
 .card-add{
   max-width:500px;
   min-height: 700px;
-  background-color: rgba(206, 231, 244, 0.926);
+  background-color: #80A28E;
   border: 2px solid rgb(100, 93, 93);
   border-radius: 20px;
-  box-shadow: 5px 5px 5px rgba(157, 146, 146, 0.334);
+  box-shadow: 5px 5px 5px rgba(93, 88, 88, 0.334);
 }
 .card-text{
-  color: rgb(65, 65, 65);
+  color: rgb(0, 0, 0);
   padding-left: 20px;
   margin-left: 10px;
-  text-shadow: 5px 5px 5px rgb(184, 182, 182);
+  text-shadow: 5px 5px 5px rgb(123, 123, 123);
 }
 .pagination-buttons {
   border: 2px solid rgb(107, 90, 90);
@@ -48,4 +48,7 @@
   justify-content: center;
   margin-top: 5px;
   gap: 30px;
+}
+.background{
+  background-color: #E2E5DC;
 }
