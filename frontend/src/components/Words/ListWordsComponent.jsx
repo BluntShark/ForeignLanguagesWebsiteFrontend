@@ -59,8 +59,8 @@ const ListWordsComponent = () => {
                 ))}
             </div>
             <div className='button '>
-                <button className='pagination-buttons' onClick={prevPage} disabled={currentPage === 1}>Previous</button>
-                <button className='pagination-buttons' onClick={nextPage} disabled={currentPage === Math.ceil(words.length / wordsPerPage)}>Next</button>
+                <button className='pagination-buttons' onClick={prevPage} disabled={currentPage === 1}>Предыдущий</button>
+                <button className='pagination-buttons' onClick={nextPage} disabled={currentPage === Math.ceil(words.length / wordsPerPage)}>Следующий</button>
             </div>
             <br/ ><br/>
         </div>
