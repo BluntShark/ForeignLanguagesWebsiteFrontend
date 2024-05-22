@@ -9,6 +9,7 @@ import LoginAndRegistrationWindow from './components/Auth/LoginAndRegistrationWi
 import PrivateRoute from './components/Auth/PrivateRoute';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ListLessonsComponent from './components/Lessons/ListLessonsComponent';
+import LessonContent from './components/Lessons/LessonContent';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -49,6 +50,10 @@ function App() {
           <Route
             path='/add-word'
             element={<PrivateRoute element={<WordsComponent />} isAuthenticated={isAuthenticated} />}
+          />
+          <Route
+            path='/lesson-content'
+            element={<PrivateRoute element={<LessonContent />} isAuthenticated={isAuthenticated} />}
           />
         </Routes>
         <FooterComponent />
