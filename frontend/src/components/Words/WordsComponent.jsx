@@ -158,7 +158,7 @@ const WordsComponent = () => {
                                 />
                             </div>
                             <br />
-                            <div class="d-grid gap-2 col-6 mx-auto">
+                            <div className="d-grid gap-2 col-6 mx-auto">
                                 <button className='btn btn-secondary border-radius-sm' onClick={saveWord}>Submit</button>
                             </div>
                         </form>

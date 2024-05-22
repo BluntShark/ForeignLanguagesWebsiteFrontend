@@ -40,7 +40,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const Login = ({ setIsAuthenticated, setUserRole }) => {
+const Login = ({ setIsAuthenticated, setUserRole}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -52,6 +52,7 @@ const Login = ({ setIsAuthenticated, setUserRole }) => {
       alert(response.data.message);
       localStorage.setItem('isAuthenticated', 'true');
       localStorage.setItem('userRole', response.data.role);
+      localStorage.setItem('username', username);
       setIsAuthenticated(true);
       setUserRole(response.data.role);
       navigate('/');
