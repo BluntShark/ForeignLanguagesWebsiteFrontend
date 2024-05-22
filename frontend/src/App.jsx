@@ -8,6 +8,7 @@ import WordsComponent from './components/Words/WordsComponent';
 import LoginAndRegistrationWindow from './components/Auth/LoginAndRegistrationWindow';
 import PrivateRoute from './components/Auth/PrivateRoute';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ListLessonsComponent from './components/Lessons/ListLessonsComponent';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -40,6 +41,10 @@ function App() {
           <Route
             path='/words'
             element={<PrivateRoute element={<ListWordsComponent userRole={userRole} />} isAuthenticated={isAuthenticated} />}
+          />
+          <Route
+            path='/lessons'
+            element={<PrivateRoute element={<ListLessonsComponent userRole={userRole} />} isAuthenticated={isAuthenticated} />}
           />
           <Route
             path='/add-word'

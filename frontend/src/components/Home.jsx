@@ -5,6 +5,7 @@ import '../App.css'
 
 const Home = ({
     imgSrc,
+    linkComp,
     ingAlt,
     title,
     description
@@ -13,7 +14,7 @@ const Home = ({
     <div className='App'>
         <br /><br />
     <div className='card-container'>
-        <Link to="/words">
+        <Link to={linkComp}>
         <img
           src={imgSrc}
           alt={ingAlt}

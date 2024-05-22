@@ -11,18 +11,21 @@ export const HomePage = () => {
       <div className='cards-wrapper'>
         <Home 
           imgSrc={dictionaryPicture}
+          linkComp={"/words"}
           ingAlt={"Dictionary"}
           title={"Словарь"}
           description={"Слова, перевод и примеры"}
         />
         <Home 
           imgSrc={lessonsPicture}
+          linkComp={"/lessons"}
           ingAlt={"Lessons"}
           title={"Уроки"}
           description={"Учите веселые уроки"}
         />
         <Home 
           imgSrc={testPicture}
+          linkComp={"/lessons"}
           ingAlt={"Tests"}
           title={"Тесты"}
           description={"Проходите веселые тесты"}
