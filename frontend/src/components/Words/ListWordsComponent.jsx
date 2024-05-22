@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { listWords } from '../../services/WordService';
 
-const ListWordsComponent = () => {
-    const [words, setWords] = useState([])
-
+const ListWordsComponent = ({ userRole }) => {
+    const [words, setWords] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const wordsPerPage = 6;
-    const navigator = useNavigate();
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetchWords();
@@ -22,7 +21,7 @@ const ListWordsComponent = () => {
     };
 
     const addNewWord = () => {
-        navigator('/add-word');
+        navigate('/add-word');
     };
 
     const nextPage = () => {
@@ -40,7 +39,9 @@ const ListWordsComponent = () => {
     return (
         <div className='container'>
             <h2 className='text-center text-muted'>Словарь</h2>
-            <button className='btn btn-secondary mb-2' onClick={addNewWord}>Add Word</button>
+            {userRole === 'ROLE_ADMIN' && (
+                <button className='btn btn-secondary mb-2' onClick={addNewWord}>Add Word</button>
+            )}
             <div className='row'>
                 {currentWords.map(word => (
                     <div key={word.id} className='col-md-4 mb-4'>
@@ -58,11 +59,11 @@ const ListWordsComponent = () => {
                     </div>
                 ))}
             </div>
-            <div className='button '>
+            <div className='button'>
                 <button className='pagination-buttons' onClick={prevPage} disabled={currentPage === 1}>Предыдущий</button>
                 <button className='pagination-buttons' onClick={nextPage} disabled={currentPage === Math.ceil(words.length / wordsPerPage)}>Следующий</button>
             </div>
-            <br/ ><br/>
+            <br/><br/>
         </div>
     );
 };
