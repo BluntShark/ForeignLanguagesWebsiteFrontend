@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { deleteWord, listWords } from '../../services/WordService';
-import { ToastContainer, toast as deleteSuccess, toast as addSuccess, toast as updateSuccess, Slide, Zoom } from 'react-toastify';
+import { ToastContainer, toast, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const ListWordsComponent = ({ userRole }) => {
@@ -33,7 +33,7 @@ const ListWordsComponent = ({ userRole }) => {
         console.log(id);
         deleteWord(id).then((response) => {
             fetchWords();
-            deleteSuccess.promise(
+            toast.promise(
                 new Promise((resolve, reject) => {
                     setTimeout(() => {
                         resolve();
@@ -50,7 +50,7 @@ const ListWordsComponent = ({ userRole }) => {
 
         }).catch(error => {
             console.error(error);
-            deleteSuccess.promise(
+            toast.promise(
                 new Promise((resolve, reject) => {
                     setTimeout(() => {
                         resolve();

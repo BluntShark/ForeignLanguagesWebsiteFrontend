@@ -10,7 +10,7 @@ import PrivateRoute from './components/Auth/PrivateRoute';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ListLessonsComponent from './components/Lessons/ListLessonsComponent';
 import LessonContent from './components/Lessons/LessonContent';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
@@ -25,7 +25,6 @@ function App() {
     setIsAuthenticated(auth === 'true');
     setUserRole(role);
     setUsername(username);
-
   }, []);
 
   return (
@@ -62,53 +61,10 @@ function App() {
             element={<PrivateRoute element={<LessonContent />} isAuthenticated={isAuthenticated} />}
           />
         </Routes>
-        {/* <FooterComponent /> */}
-        <ToastContainer />
+        <ToastContainer transition={Zoom}/>
       </BrowserRouter>
     </div>
   );
 }
 
 export default App;
-
-// import React, { useEffect, useState } from 'react';
-// import { BrowserRouter, Route, Routes } from 'react-router-dom';
-// import HeaderComponent from './components/HeaderComponent';
-// import FooterComponent from './components/FooterComponent';
-// import HomePage from './components/HomePage';
-// import ListWordsComponent from './components/Words/ListWordsComponent';
-// import WordsComponent from './components/Words/WordsComponent';
-// import Login from './components/Auth/Login';
-// import Register from './components/Auth/Register';
-// import PrivateRoute from './components/Auth/PrivateRoute';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-
-// function App() {
-//   const [isAuthenticated, setIsAuthenticated] = useState(false);
-//   const [userRole, setUserRole] = useState(null);
-
-//   useEffect(() => {
-//     const auth = localStorage.getItem('isAuthenticated');
-//     const role = localStorage.getItem('userRole');
-//     setIsAuthenticated(auth === 'true');
-//     setUserRole(role);
-//   }, []);
-
-//   return (
-//     <div className="App">
-//       <BrowserRouter>
-//         <HeaderComponent />
-//         <Routes>
-//           <Route path='/' element={<HomePage />} />
-//           <Route path='/login' element={<Login setIsAuthenticated={setIsAuthenticated} setUserRole={setUserRole} />} />
-//           <Route path='/register' element={<Register />} />
-//           <Route path='/words' element={<PrivateRoute element={<ListWordsComponent userRole={userRole} />} isAuthenticated={isAuthenticated} />} />
-//           <Route path='/add-word' element={<PrivateRoute element={<WordsComponent />} isAuthenticated={isAuthenticated} />} />
-//         </Routes>
-//         <FooterComponent />
-//       </BrowserRouter>
-//     </div>
-//   );
-// }
-
-// export default App;

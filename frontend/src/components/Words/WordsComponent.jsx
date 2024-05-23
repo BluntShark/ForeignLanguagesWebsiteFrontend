@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { createWord, getWord, updateWord } from '../../services/WordService';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const WordsComponent = () => {
     const [wordInRussian, setWordInRussian] = useState('');
@@ -50,16 +52,56 @@ const WordsComponent = () => {
             if(id){
                 updateWord(id, word).then((response) => {
                     console.log(response.data);
+                    // toast.success('Слово успешно обновлено', {
+                    //     position: "top-right",
+                    //     autoClose: 2000,
+                    //     hideProgressBar: false,
+                    //     closeOnClick: true,
+                    //     pauseOnHover: true,
+                    //     draggable: true,
+                    //     progress: undefined,
+                    //     theme: "light"
+                    // });
                     navigator('/words')
                 }).catch(error => {
                     console.error(error);
+                    toast.error('Не удалось обновить слово', {
+                        position: "top-right",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light"
+                    });
                 })
             }else{
                 createWord(word).then((response) => {
                     console.log(response.data);
+                    // toast.success('Слово успешно добавлено', {
+                    //     position: "top-right",
+                    //     autoClose: 2000,
+                    //     hideProgressBar: false,
+                    //     closeOnClick: true,
+                    //     pauseOnHover: true,
+                    //     draggable: true,
+                    //     progress: undefined,
+                    //     theme: "light"
+                    // });
                     navigator('/words')
                 }).catch(error => {
                     console.error(error);
+                    toast.error('Не удалось добавить слово', {
+                        position: "top-right",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light"
+                    });
                 })
             }
         }
@@ -205,6 +247,7 @@ const WordsComponent = () => {
                     </div>
                 </div>
             </div>
+            <ToastContainer />
             <br /><br />
         </div>
 );
