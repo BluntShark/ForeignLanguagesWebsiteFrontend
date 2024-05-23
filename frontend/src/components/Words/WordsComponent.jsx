@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { createWord } from '../../services/WordService';
+import { createWord, getWord } from '../../services/WordService';
 
 const WordsComponent = () => {
     const [wordInRussian, setWordInRussian] = useState('');
@@ -23,6 +23,21 @@ const WordsComponent = () => {
     })
 
     const navigator = useNavigate();
+    useEffect(() =>{
+        if(id){
+            getWord(id).then((response) => {
+                setWordInRussian(response.data.wordInRussian);
+                setTranscription(response.data.transcription);
+                setHiragana(response.data.hiragana);
+                setKatakana(response.data.katakana);
+                setKanji(response.data.kanji);
+                setExample(response.data.example);
+                setTranslation(response.data.translation);
+            }).catch(error => {
+                console.error(error);
+            })
+        }
+    }, [id])
   
     function saveWord(e){
         e.preventDefault();

@@ -10,7 +10,7 @@ const ListWordsComponent = ({ userRole }) => {
 
     useEffect(() => {
         fetchWords();
-    }, []);
+    }, [])
 
     const fetchWords = () => {
         listWords().then((response) => {
@@ -18,11 +18,11 @@ const ListWordsComponent = ({ userRole }) => {
         }).catch(error => {
             console.error(error);
         });
-    };
+    }
 
     const addNewWord = () => {
         navigate('/add-word');
-    };
+    }
 
     const updateWord = (id) => {
         navigate(`/update-word/${id}`);
@@ -30,11 +30,11 @@ const ListWordsComponent = ({ userRole }) => {
 
     const nextPage = () => {
         setCurrentPage((prevPage) => Math.min(prevPage + 1, Math.ceil(words.length / wordsPerPage)));
-    };
+    }
 
     const prevPage = () => {
         setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
-    };
+    }
 
     const indexOfLastWord = currentPage * wordsPerPage;
     const indexOfFirstWord = indexOfLastWord - wordsPerPage;
@@ -59,7 +59,7 @@ const ListWordsComponent = ({ userRole }) => {
                                 <p className='card-text'>Пример: {word.example}</p>
                                 <p className='card-text'>Перевод: {word.translation}</p>
                                 {userRole === 'ROLE_ADMIN' && (
-                                    <div class="d-grid gap-2">
+                                    <div className="d-grid gap-2">
                                         <button className='btn btn-secondary btn-sm' onClick={( ) => updateWord(word.id)}>Изменить слово</button>
                                     </div>
                                 )}
