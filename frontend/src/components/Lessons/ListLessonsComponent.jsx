@@ -44,59 +44,33 @@ const ListLessonsComponent = ({ userRole }) => {
             )} */}
             <div className='row'>
                 {currentLessons.map(lesson => (
-                    <div key={lesson.id} className='col-md-4 mb-4'>
-                        <div className='card'>
-                            <div className='card-body'>
-                                <p className='card-text'>Название: {lesson.title}</p>
-                                {lesson.lessonCategory && (
-                                    <div className='card-text'>
-                                        <p>Категория урока: {lesson.lessonCategory.title}</p>
-                                    </div>
-                                )}
+                    // <div key={lesson.id} className='col-md-4 mb-4'>
+                    //     <div className='card'>
+                    //         <div className='card-body'>
+                    //             <p className='card-text'>Название: {lesson.title}</p>
+                    //             {/* {lesson.lessonCategory && (
+                    //                 <div className='card-text'>
+                    //                     <p>Категория урока: {lesson.lessonCategory.title}</p>
+                    //                 </div>
+                    //             )}
 
-                                {lesson.difficultlyLevel && (
-                                    <div className='card-text'>
-                                        <p>Уровень сложности: {lesson.difficultlyLevel.level}</p>
-                                    </div>
-                                )}
-                                <p className='card-text'>Дата создания: {lesson.dateOfCreation}</p>
-                                <p className='card-text'>Длительность изучения: {lesson.duration}</p>
-                                <button className='btn btn-secondary mb-3' onClick={startLesson}>Начать изучение</button>
-                            </div>
-                        </div>
+                    //             {lesson.difficultlyLevel && (
+                    //                 <div className='card-text'>
+                    //                     <p>Уровень сложности: {lesson.difficultlyLevel.level}</p>
+                    //                 </div>
+                    //             )} */}
+                    //             <p className='card-text'>Дата создания: {lesson.dateOfCreation}</p>
+                    //             <p className='card-text'>Длительность изучения: {lesson.duration}</p>
+                    //             <button className='btn btn-secondary mb-3' onClick={startLesson}>Начать изучение</button>
+                    //         </div>
+                    //     </div>
+                    // </div>
+                    <div key={lesson.id} className='col-md-4 mb-4'>
+                            <p>{lesson.title}</p>
+
                     </div>
                 ))}
             </div>
-
-
-            {/* <div className='row'>
-                {currentWords.map(word => (
-                    <div key={word.id} className='col-md-4 mb-4'>
-                        <div className='card'>
-                            <div className='card-body'>
-                                <p className='card-text'>Word in Russian: {word.wordInRussian}</p>
-                                <p className='card-text'>Transcription: {word.transcription}</p>
-                                {word.japaneseWord && (
-                                    <div className='card-text'>
-                                        <p>Kanji: {word.japaneseWord.kanji}</p>
-                                        <p>Hiragana: {word.japaneseWord.hiragana}</p>
-                                        <p>Katakana: {word.japaneseWord.katakana}</p>
-                                        <p>Example: {word.japaneseWord.example}</p>
-                                        <p>Translation: {word.japaneseWord.translation}</p>
-                                    </div>
-                                )}
-                                {word.partOfSpeech && (
-                                    <div className='card-text'>
-                                        <p>Part of Speech: {word.partOfSpeech.partOfSpeech}</p>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                    </div> */}
-
-
-
-
 
             <div className='button'>
                 <button className='pagination-buttons' onClick={prevPage} disabled={currentPage === 1}>Предыдущий</button>

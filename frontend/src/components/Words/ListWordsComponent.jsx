@@ -24,6 +24,10 @@ const ListWordsComponent = ({ userRole }) => {
         navigate('/add-word');
     };
 
+    const updateWord = (id) => {
+        navigate(`/update-word/${id}`);
+    }
+
     const nextPage = () => {
         setCurrentPage((prevPage) => Math.min(prevPage + 1, Math.ceil(words.length / wordsPerPage)));
     };
@@ -40,7 +44,7 @@ const ListWordsComponent = ({ userRole }) => {
         <div className='container'>
             <h2 className='text-center text-muted'>Словарь</h2>
             {userRole === 'ROLE_ADMIN' && (
-                <button className='btn btn-secondary mb-2' onClick={addNewWord}>Add Word</button>
+                <button className='btn btn-secondary mb-2' onClick={addNewWord}>Добавить слово</button>
             )}
             <div className='row'>
                 {currentWords.map(word => (
@@ -54,6 +58,11 @@ const ListWordsComponent = ({ userRole }) => {
                                 <p className='card-text'>Канзи: {word.kanji}</p>
                                 <p className='card-text'>Пример: {word.example}</p>
                                 <p className='card-text'>Перевод: {word.translation}</p>
+                                {userRole === 'ROLE_ADMIN' && (
+                                    <div class="d-grid gap-2">
+                                        <button className='btn btn-secondary btn-sm' onClick={( ) => updateWord(word.id)}>Изменить слово</button>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { createWord } from '../../services/WordService';
 
 const WordsComponent = () => {
@@ -10,6 +10,8 @@ const WordsComponent = () => {
     const [kanji, setKanji] = useState('');
     const [example, setExample] = useState('');
     const [translation, setTranslation] = useState('');
+
+    const {id} = useParams();
 
 
     const [errors, setErrors] = useState({
@@ -72,12 +74,23 @@ const WordsComponent = () => {
         return valid;
     }
 
+    function pageTitle(){
+        if(id){
+            return <h2 className='text-center'>Изменить слово</h2>
+        } else{
+            return <h2 className='text-center'>Добавить слово</h2>
+        }
+
+    }
+
     return (
         <div className='container'>
             <br />
             <div className='row'>
                 <div className='card-add col-md-8 offset-md-4'>
-                    <h2 className='text-center'>Добавить слово</h2>
+                    {
+                        pageTitle()
+                    }
                     <div className='card-body'>
                         <form>
                             <div className='form-group mb-2'>

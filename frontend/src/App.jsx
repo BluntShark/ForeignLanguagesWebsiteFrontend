@@ -52,6 +52,10 @@ function App() {
             element={<PrivateRoute element={<WordsComponent />} isAuthenticated={isAuthenticated} />}
           />
           <Route
+            path='/update-word/:id'
+            element={<PrivateRoute element={<WordsComponent />} isAuthenticated={isAuthenticated} />}
+          />
+          <Route
             path='/lesson-content'
             element={<PrivateRoute element={<LessonContent />} isAuthenticated={isAuthenticated} />}
           />
