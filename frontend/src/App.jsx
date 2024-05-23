@@ -60,7 +60,7 @@ function App() {
             element={<PrivateRoute element={<LessonContent />} isAuthenticated={isAuthenticated} />}
           />
         </Routes>
-        <FooterComponent />
+        {/* <FooterComponent /> */}
       </BrowserRouter>
     </div>
   );

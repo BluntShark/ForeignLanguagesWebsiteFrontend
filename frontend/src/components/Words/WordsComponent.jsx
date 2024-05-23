@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { createWord, getWord } from '../../services/WordService';
+import { createWord, getWord, updateWord } from '../../services/WordService';
 
 const WordsComponent = () => {
     const [wordInRussian, setWordInRussian] = useState('');
@@ -39,17 +39,29 @@ const WordsComponent = () => {
         }
     }, [id])
   
-    function saveWord(e){
+    function saveOrUpdateWord(e){
         e.preventDefault();
 
         if(validateForm()){
+
             const word = {wordInRussian, transcription, hiragana, katakana, kanji, example, translation}
             console.log(word)
 
-            createWord(word).then((response) => {
-                console.log(response.data);
-                navigator('/words')
-            })
+            if(id){
+                updateWord(id, word).then((response) => {
+                    console.log(response.data);
+                    navigator('/words')
+                }).catch(error => {
+                    console.error(error);
+                })
+            }else{
+                createWord(word).then((response) => {
+                    console.log(response.data);
+                    navigator('/words')
+                }).catch(error => {
+                    console.error(error);
+                })
+            }
         }
 
     }
@@ -187,7 +199,7 @@ const WordsComponent = () => {
                             </div>
                             <br />
                             <div className="d-grid gap-2 col-6 mx-auto">
-                                <button className='btn btn-secondary border-radius-sm' onClick={saveWord}>Submit</button>
+                                <button className='btn btn-secondary border-radius-sm' onClick={saveOrUpdateWord}>Submit</button>
                             </div>
                         </form>
                     </div>

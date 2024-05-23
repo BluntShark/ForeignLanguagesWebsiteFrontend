@@ -27,17 +27,17 @@ const LoginAndRegistrationWindow = ({ setIsAuthenticated, setUserRole }) => {
         setUserRole(response.data.role);
         navigate('/');
       } else {
-        alert('Registration successful! Please log in.');
+        alert('Регистрацияя прошла успешно, войдите в созданный аккаунт');
         setIsLogin(true);
       }
     } catch (error) {
-      alert(isLogin ? 'Login failed. Please check your credentials.' : 'Registration failed. Username might be taken.');
+      alert(isLogin ? 'Ошибка входа, проверьте свои реквизиты' : 'Ошибка входа, данное имя пользователя уже существует');
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>{isLogin ? 'Login' : 'Register'}</h2>
+      <h2>{isLogin ? 'Войти' : 'Зарегистрироваться'}</h2>
       <div>
         <label>Username:</label>
         <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
@@ -46,9 +46,9 @@ const LoginAndRegistrationWindow = ({ setIsAuthenticated, setUserRole }) => {
         <label>Password:</label>
         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
       </div>
-      <button type="submit">{isLogin ? 'Login' : 'Register'}</button>
+      <button type="submit">{isLogin ? 'Войти' : 'Зарегистрироваться'}</button>
       <button type="button" onClick={handleToggle}>
-        {isLogin ? 'Switch to Register' : 'Switch to Login'}
+        {isLogin ? 'Зарегистрироваться' : 'Войти'}
       </button>
     </form>
   );

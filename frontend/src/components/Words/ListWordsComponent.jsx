@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { listWords } from '../../services/WordService';
+import { deleteWord, listWords } from '../../services/WordService';
 
 const ListWordsComponent = ({ userRole }) => {
     const [words, setWords] = useState([]);
@@ -27,6 +27,15 @@ const ListWordsComponent = ({ userRole }) => {
     const updateWord = (id) => {
         navigate(`/update-word/${id}`);
     }
+    const removeWord = (id) => {
+        console.log(id);
+        deleteWord(id).then((response) => {
+            fetchWords();
+
+        }).catch(error => {
+            console.error(error);
+        })
+    }
 
     const nextPage = () => {
         setCurrentPage((prevPage) => Math.min(prevPage + 1, Math.ceil(words.length / wordsPerPage)));
@@ -44,7 +53,9 @@ const ListWordsComponent = ({ userRole }) => {
         <div className='container'>
             <h2 className='text-center text-muted'>Словарь</h2>
             {userRole === 'ROLE_ADMIN' && (
-                <button className='btn btn-secondary mb-2' onClick={addNewWord}>Добавить слово</button>
+                <button className='btn btn-secondary mb-2' onClick={addNewWord}
+                style={{marginLeft: '5px'}}
+                > Добавить слово</button>
             )}
             <div className='row'>
                 {currentWords.map(word => (
@@ -61,7 +72,9 @@ const ListWordsComponent = ({ userRole }) => {
                                 {userRole === 'ROLE_ADMIN' && (
                                     <div className="d-grid gap-2">
                                         <button className='btn btn-secondary btn-sm' onClick={( ) => updateWord(word.id)}>Изменить слово</button>
+                                        <button className='btn btn-secondary btn-sm' onClick={( ) => removeWord(word.id)}>Удалить слово </button>
                                     </div>
+                                    
                                 )}
                             </div>
                         </div>
