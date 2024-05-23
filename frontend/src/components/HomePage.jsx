@@ -4,6 +4,8 @@ import '../App.css';
 import dictionaryPicture from '../assets/dictionary.jpg';
 import lessonsPicture from '../assets/lessons.jpg';
 import testPicture from '../assets/tests.jpg';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const HomePage = () => {
   return (
@@ -31,6 +33,7 @@ export const HomePage = () => {
           description={"Проходите веселые тесты"}
         />
       </div>
+      <ToastContainer />
     </div>
   );
 };

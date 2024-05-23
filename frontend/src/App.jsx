@@ -10,6 +10,8 @@ import PrivateRoute from './components/Auth/PrivateRoute';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ListLessonsComponent from './components/Lessons/ListLessonsComponent';
 import LessonContent from './components/Lessons/LessonContent';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -61,6 +63,7 @@ function App() {
           />
         </Routes>
         {/* <FooterComponent /> */}
+        <ToastContainer />
       </BrowserRouter>
     </div>
   );

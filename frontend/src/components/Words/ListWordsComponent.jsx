@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { deleteWord, listWords } from '../../services/WordService';
+import { ToastContainer, toast as deleteSuccess, toast as addSuccess, toast as updateSuccess, Slide, Zoom } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ListWordsComponent = ({ userRole }) => {
     const [words, setWords] = useState([]);
@@ -31,9 +33,37 @@ const ListWordsComponent = ({ userRole }) => {
         console.log(id);
         deleteWord(id).then((response) => {
             fetchWords();
+            deleteSuccess.promise(
+                new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        resolve();
+                    }, 1000);
+                }),
+                {
+                    pending: "Удаление...",
+                    success: "Слово удалено"
+                },
+                {
+                    autoClose: 2000
+                }
+            )
 
         }).catch(error => {
             console.error(error);
+            deleteSuccess.promise(
+                new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        resolve();
+                    }, 1000);
+                }),
+                {
+                    pending: "Удаление...",
+                    error: "Слово не удалось удалить"
+                },
+                {
+                    autoClose: 2000
+                }
+            )
         })
     }
 
@@ -85,6 +115,9 @@ const ListWordsComponent = ({ userRole }) => {
                 <button className='pagination-buttons' onClick={prevPage} disabled={currentPage === 1}>Предыдущий</button>
                 <button className='pagination-buttons' onClick={nextPage} disabled={currentPage === Math.ceil(words.length / wordsPerPage)}>Следующий</button>
             </div>
+            <ToastContainer 
+            transition={Zoom}
+            />
             <br/><br/>
         </div>
     );

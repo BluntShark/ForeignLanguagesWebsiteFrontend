@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast as registerSuccess, toast as registerNotSuccess, toast as loginSuccess, Zoom } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LoginAndRegistrationWindow = ({ setIsAuthenticated, setUserRole }) => {
   const [isLogin, setIsLogin] = useState(true);
@@ -20,18 +22,59 @@ const LoginAndRegistrationWindow = ({ setIsAuthenticated, setUserRole }) => {
     try {
       const response = await axios.post(url, userInfo);
       if (isLogin) {
-        alert(response.data.message);
+        loginSuccess.success('Успешный вход', {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light"
+          });
         localStorage.setItem('isAuthenticated', 'true');
         localStorage.setItem('userRole', response.data.role);
+        localStorage.setItem('username', username);
         setIsAuthenticated(true);
         setUserRole(response.data.role);
         navigate('/');
       } else {
-        alert('Регистрацияя прошла успешно, войдите в созданный аккаунт');
+        registerSuccess.success('Регистрацияя прошла успешно, войдите в созданный аккаунт', {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light"
+          });
         setIsLogin(true);
       }
     } catch (error) {
-      alert(isLogin ? 'Ошибка входа, проверьте свои реквизиты' : 'Ошибка входа, данное имя пользователя уже существует');
+      if(isLogin){
+        registerNotSuccess.error('Ошибка входа, проверьте свои реквизиты', {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light"
+          });
+      }else{
+        registerNotSuccess.error('Ошибка регистрации, пользоватеьль с таким именем уже существует', {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light"
+          });
+      }
     }
   };
 
@@ -50,6 +93,9 @@ const LoginAndRegistrationWindow = ({ setIsAuthenticated, setUserRole }) => {
       <button type="button" onClick={handleToggle}>
         {isLogin ? 'Зарегистрироваться' : 'Войти'}
       </button>
+      <ToastContainer 
+      transition={Zoom}
+      />
     </form>
   );
 };
