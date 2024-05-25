@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { createLesson, listDifficultyLevels, listLessonCategories } from '../../services/LessonService';
+import { createLesson, getLesson, listDifficultyLevels, listLessonCategories, updateLesson } from '../../services/LessonService';
 import { useNavigate, useParams } from 'react-router-dom';
 import parser from 'bbcode-to-react';
 
@@ -23,6 +23,21 @@ const LessonComponent = () => {
 
   const navigator = useNavigate();
   const {id} = useParams();
+
+  useEffect(() => {
+    if(id){
+      getLesson(id).then((response) => {
+        setTitle(response.data.title);
+        setContent(response.data.content);
+        setDateOfCreation(response.data.dateOfCreation);
+        setDuration(response.data.duration);
+        setDifficultlyLevel(response.data.difficultlyLevel);
+        setLessonCategory(response.data.lessonCategory);
+      }).catch(error => {
+        console.error(error);
+      })
+    }
+  }, [id])
 
   useEffect(() => {
     listDifficultyLevels()
@@ -58,17 +73,29 @@ const LessonComponent = () => {
     setContent(e.target.value);
   }
 
-  function saveLesson(e){
+  function saveOrUpdateLesson(e){
     e.preventDefault();
 
     if(validateForm()){
       const lesson = { title, content, dateOfCreation, duration, difficultlyLevel, lessonCategory }
       console.log(lesson);
 
-    createLesson(lesson).then((response) => {
-      console.log(response.data);
-      navigator('/lessons');
-    })
+      if(id){
+        updateLesson(id, lesson).then((response) => {
+          console.log(response.data);
+          navigator('/lessons');
+        }).catch(error => {
+          console.error(error);
+        })
+      } else {
+        createLesson(lesson).then((response) => {
+          console.log(response.data);
+          navigator('/lessons');
+        }).catch(error => {
+          console.error(error);
+        })
+      }
+
     }
   }
 
@@ -109,7 +136,7 @@ const LessonComponent = () => {
     return valid;
 
   }
-  
+
   function pageTitle(){
     if(id){
       return <h2 className='text-center'>Редактировать урок</h2>
@@ -204,7 +231,7 @@ const LessonComponent = () => {
                 type='text'
                 placeholder='Введите контент урока'
                 name='content'
-                // value={content}
+                // size="1000"
                 value={content}
                 className={errors.content ? 'is-invalid form-control' : 'form-control'}
                 onChange={handleContent}
@@ -212,7 +239,7 @@ const LessonComponent = () => {
                 {errors.content && <div className='invalid-feedback'> {errors.content}</div>}
               </div>
               <div className="d-grid gap-2 col-6 mx-auto">
-                <button className='btn btn-secondary border-radius-sm' onClick={saveLesson}> Отправить</button>
+                <button className='btn btn-secondary border-radius-sm' onClick={saveOrUpdateLesson}> Отправить</button>
               </div>
             </form>
           </div>

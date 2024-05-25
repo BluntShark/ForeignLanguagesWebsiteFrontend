@@ -9,3 +9,7 @@ export const listDifficultyLevels = () => axios.get(REST_API_DIFFICULTLY_LEVEL_U
 export const listLessonCategories = () => axios.get(REST_API_LESSON_CATRGORY_URL);
 
 export const createLesson = (lesson) => axios.post(REST_API_BASE_URL, lesson);
+
+export const getLesson = (lessonId) => axios.get(REST_API_BASE_URL + '/' + lessonId);
+
+export const updateLesson = (lessonId, lesson) => axios.put(REST_API_BASE_URL + '/' + lessonId, lesson);

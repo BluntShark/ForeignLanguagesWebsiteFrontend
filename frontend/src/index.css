@@ -49,6 +49,10 @@
   margin-left: 10px;
   text-shadow: 5px 5px 5px rgba(113, 111, 147, 0.718);
 }
+/* .label{
+  position: relative;
+  height: 100px;
+} */
 .pagination-buttons {
   border: 2px solid rgb(117, 113, 113);
   border-radius: 15px;

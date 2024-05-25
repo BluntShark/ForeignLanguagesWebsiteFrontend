@@ -45,7 +45,6 @@ const ListLessonsComponent = ({ userRole }) => {
                     <th>Уровень сложности</th>
                     <th>Категория урока</th>
                     {userRole === 'ROLE_ADMIN' && ( <th>Действия</th> )}
-                    {/* <th>Котент</th> */}
                 </tr>
             </thead>
             <tbody>
@@ -61,11 +60,10 @@ const ListLessonsComponent = ({ userRole }) => {
                             {lesson.lessonCategory && (
                                 <td onClick={() => viewContent(lesson.id)}>{lesson.lessonCategory.title}</td>
                             )}
-                            {/* <td>{lesson.content}</td> */}
-                            <td>
-                            {userRole === 'ROLE_ADMIN' && (
-                                <button className='btn btn-secondary btn-sm' onClick={() => updateLesson(lesson.id)}> Изменить урок</button> )}
-                            </td>
+                            {userRole === 'ROLE_ADMIN' && 
+                            <td> 
+                                <button className='btn btn-secondary btn-sm' onClick={() => updateLesson(lesson.id)}> Изменить урок</button>
+                            </td>}
                         </tr> 
                     )
                 }
