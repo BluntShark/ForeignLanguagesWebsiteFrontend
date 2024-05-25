@@ -1,7 +1,11 @@
 import axios from "axios";
 
 const REST_API_BASE_URL = 'http://localhost:8080/lessons';
+const REST_API_DIFFICULTLY_LEVEL_URL = 'http://localhost:8080/difficultlyLevels';
+const REST_API_LESSON_CATRGORY_URL = 'http://localhost:8080/lessonCategories';
 
 export const listLessons = () => axios.get(REST_API_BASE_URL);
+export const listDifficultyLevels = () => axios.get(REST_API_DIFFICULTLY_LEVEL_URL);
+export const listLessonCategories = () => axios.get(REST_API_LESSON_CATRGORY_URL);
 
 export const createLesson = (lesson) => axios.post(REST_API_BASE_URL, lesson);

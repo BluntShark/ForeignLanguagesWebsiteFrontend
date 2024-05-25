@@ -41,7 +41,7 @@ const ListLessonsComponent = ({ userRole }) => {
                     <th>Длительность</th>
                     <th>Уровень сложности</th>
                     <th>Категория урока</th>
-                    <th>Котент</th>
+                    {/* <th>Котент</th> */}
                 </tr>
             </thead>
             <tbody>
@@ -57,7 +57,7 @@ const ListLessonsComponent = ({ userRole }) => {
                             {lesson.lessonCategory && (
                                 <td>{lesson.lessonCategory.title}</td>
                             )}
-                            <td>{lesson.content}</td>
+                            {/* <td>{lesson.content}</td> */}
                         </tr> 
                     )
                 }

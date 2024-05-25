@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { createLesson } from '../../services/LessonService';
+import { createLesson, listDifficultyLevels, listLessonCategories } from '../../services/LessonService';
 import { useNavigate } from 'react-router-dom';
 
 const LessonComponent = () => {
@@ -17,11 +17,11 @@ const LessonComponent = () => {
   const navigator = useNavigate();
 
   useEffect(() => {
-    axios.get('http://localhost:8080/difficultlyLevels')
+    listDifficultyLevels()
       .then(response => setDifficultyLevels(response.data))
       .catch(error => console.error('Error fetching difficulty levels:', error));
 
-    axios.get('http://localhost:8080/lessonCategories')
+      listLessonCategories()
       .then(response => setLessonCategories(response.data))
       .catch(error => console.error('Error fetching lesson categories:', error));
   }, []);
@@ -64,13 +64,13 @@ const LessonComponent = () => {
   return (
     <div className='container'>
       <br /><br />
-      <div className='row'>
-        <div className='card col-md-6 offset-md-4 offset-md-3'>
+      <div className='row '>
+        <div className='card-lesson col-md-6 offset-md-4 offset-md-3'>
           <h2 className='text-center'>Создать урок</h2>
           <div className='card-body'>
             <form>
 
-            <div className='form-group mb-2'>
+            <div className='form-group mb-2 '>
                 <label className='form-label'> Название урока:</label>
                 <input
                 type='text'
@@ -79,18 +79,6 @@ const LessonComponent = () => {
                 value={title}
                 className='form-control'
                 onChange={handleTitle}
-                ></input>
-              </div>
-
-              <div className='form-group mb-2'>
-                <label className='form-label'> Контент:</label>
-                <input
-                type='text'
-                placeholder='Ввести название'
-                name='content'
-                value={content}
-                className='form-control'
-                onChange={handleContent}
                 ></input>
               </div>
 
@@ -123,7 +111,7 @@ const LessonComponent = () => {
                 <select
                   name='difficultlyLevel'
                   value={difficultlyLevel}
-                  className='form-control'
+                  className='form-select'
                   onChange={handleDifficultlyLevel}
                 >
                   <option value=''>Выберите уровень сложности</option>
@@ -138,7 +126,7 @@ const LessonComponent = () => {
                 <select
                   name='lessonCategory'
                   value={lessonCategory}
-                  className='form-control'
+                  className='form-select'
                   onChange={handleLessonCategory}
                 >
                   <option value=''>Выберите категорию урока</option>
@@ -148,7 +136,20 @@ const LessonComponent = () => {
                 </select>
               </div>
 
-              <button className='btn btn-success' onClick={saveLesson}> Отправить</button>
+              <div className='form-group mb-2'>
+                <label className='form-label'> Контент:</label>
+                <input
+                type='text'
+                placeholder='Введите контент урока'
+                name='content'
+                value={content}
+                className='form-control'
+                onChange={handleContent}
+                ></input>
+              </div>
+              <div className="d-grid gap-2 col-6 mx-auto">
+                <button className='btn btn-secondary border-radius-sm' onClick={saveLesson}> Отправить</button>
+              </div>
             </form>
           </div>
         </div>

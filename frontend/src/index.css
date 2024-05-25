@@ -26,6 +26,15 @@
   border-radius: 25px;
   box-shadow: 5px 5px 5px rgba(95, 99, 163, 0.341);
 }
+.card-lesson{
+  max-width: 450px;
+  max-height: 600px;
+  min-height: 550px;
+  background-color: #c5c1da;
+  border: 3px solid rgb(117, 113, 113);
+  border-radius: 25px;
+  box-shadow: 5px 5px 5px rgba(95, 99, 163, 0.341);
+}
 .card-add{
   max-width:500px;
   min-height: 700px;
