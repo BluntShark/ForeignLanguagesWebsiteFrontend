@@ -26,6 +26,9 @@ const ListLessonsComponent = ({ userRole }) => {
     const addNewLesson = () => {
         navigate('/add-lesson');
     }
+    const updateLesson = (id) => {
+        navigate(`/update-lesson/${id}`);
+    }
 
   return (
     <div className='container'>
@@ -41,23 +44,28 @@ const ListLessonsComponent = ({ userRole }) => {
                     <th>Длительность</th>
                     <th>Уровень сложности</th>
                     <th>Категория урока</th>
+                    {userRole === 'ROLE_ADMIN' && ( <th>Действия</th> )}
                     {/* <th>Котент</th> */}
                 </tr>
             </thead>
             <tbody>
                 {
                     lessons.map(lesson =>
-                        <tr key={lesson.id} onClick={() => viewContent(lesson.id)}>
-                            <td>{lesson.title}</td>
-                            <td>{lesson.dateOfCreation}</td>
-                            <td>{lesson.duration}</td>
+                        <tr key={lesson.id}>
+                            <td onClick={() => viewContent(lesson.id)}>{lesson.title}</td>
+                            <td onClick={() => viewContent(lesson.id)}>{lesson.dateOfCreation}</td>
+                            <td onClick={() => viewContent(lesson.id)}>{lesson.duration}</td>
                             {lesson.difficultlyLevel && (
-                                <td>{lesson.difficultlyLevel.level}</td>
+                                <td onClick={() => viewContent(lesson.id)}>{lesson.difficultlyLevel.level}</td>
                             )}
                             {lesson.lessonCategory && (
-                                <td>{lesson.lessonCategory.title}</td>
+                                <td onClick={() => viewContent(lesson.id)}>{lesson.lessonCategory.title}</td>
                             )}
                             {/* <td>{lesson.content}</td> */}
+                            <td>
+                            {userRole === 'ROLE_ADMIN' && (
+                                <button className='btn btn-secondary btn-sm' onClick={() => updateLesson(lesson.id)}> Изменить урок</button> )}
+                            </td>
                         </tr> 
                     )
                 }

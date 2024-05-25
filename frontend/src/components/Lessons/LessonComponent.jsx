@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { createLesson, listDifficultyLevels, listLessonCategories } from '../../services/LessonService';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import parser from 'bbcode-to-react';
 
 const LessonComponent = () => {
@@ -22,6 +22,7 @@ const LessonComponent = () => {
   })
 
   const navigator = useNavigate();
+  const {id} = useParams();
 
   useEffect(() => {
     listDifficultyLevels()
@@ -106,6 +107,15 @@ const LessonComponent = () => {
 
     setErrors(errorsCopy);
     return valid;
+
+  }
+  function pageTitle(){
+    if(id){
+      return <h2 className='text-center'>Редактировать урок</h2>
+    }
+    else {
+      return <h2 className='text-center'>Создать урок</h2>
+    }
   }
 
   return (
@@ -113,7 +123,9 @@ const LessonComponent = () => {
       <br /><br />
       <div className='row '>
         <div className='card-lesson col-md-6 offset-md-4 offset-md-3'>
-          <h2 className='text-center'>Создать урок</h2>
+          {
+            pageTitle()
+          }
           <div className='card-body'>
             <form>
             <div className='form-group mb-2 '>

@@ -65,6 +65,10 @@ function App() {
             path='/update-word/:id'
             element={<PrivateRoute element={<WordsComponent />} isAuthenticated={isAuthenticated} />}
           />
+          <Route
+            path='/update-lesson/:id'
+            element={<PrivateRoute element={<LessonComponent />} isAuthenticated={isAuthenticated} />}
+          />
         </Routes>
         <ToastContainer transition={Zoom}/>
       </BrowserRouter>
