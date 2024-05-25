@@ -11,6 +11,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ListLessonsComponent from './components/Lessons/ListLessonsComponent';
 import { ToastContainer, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import LessonComponent from './components/Lessons/LessonComponent';
+import LessonDetailComponent from './components/Lessons/LessonDetailComponent';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -48,8 +50,16 @@ function App() {
             element={<PrivateRoute element={<ListLessonsComponent userRole={userRole} />} isAuthenticated={isAuthenticated} />}
           />
           <Route
+            path='/lessons/:id'
+            element={<PrivateRoute element={<LessonDetailComponent userRole={userRole} />} isAuthenticated={isAuthenticated} />}
+          />
+          <Route
             path='/add-word'
             element={<PrivateRoute element={<WordsComponent />} isAuthenticated={isAuthenticated} />}
+          />
+          <Route
+            path='/add-lesson'
+            element={<PrivateRoute element={<LessonComponent />} isAuthenticated={isAuthenticated} />}
           />
           <Route
             path='/update-word/:id'
