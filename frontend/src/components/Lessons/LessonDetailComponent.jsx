@@ -23,9 +23,11 @@ const LessonDetailComponent = () => {
 
     return (
         <div className='container'>
-            <h2>Уроки</h2>
+            <br />
+            {/* <p>{parser.toReact('[b]strong[/b] apple and hihihi pineapple')}</p> */}
             <h2>{lesson.title}</h2>
             <p>{lesson.content}</p>
+            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
         </div>
     );
 }

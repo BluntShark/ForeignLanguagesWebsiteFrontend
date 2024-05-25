@@ -1,7 +1,7 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { createLesson, listDifficultyLevels, listLessonCategories } from '../../services/LessonService';
 import { useNavigate } from 'react-router-dom';
+import parser from 'bbcode-to-react';
 
 const LessonComponent = () => {
 
@@ -142,6 +142,7 @@ const LessonComponent = () => {
                 type='text'
                 placeholder='Введите контент урока'
                 name='content'
+                // value={content}
                 value={content}
                 className='form-control'
                 onChange={handleContent}

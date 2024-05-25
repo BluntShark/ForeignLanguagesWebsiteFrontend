@@ -28,7 +28,7 @@
 }
 .card-lesson{
   max-width: 450px;
-  max-height: 600px;
+  /* max-height: 600px; */
   min-height: 550px;
   background-color: #c5c1da;
   border: 3px solid rgb(117, 113, 113);
