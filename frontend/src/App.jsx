@@ -9,7 +9,6 @@ import LoginAndRegistrationWindow from './components/Auth/LoginAndRegistrationWi
 import PrivateRoute from './components/Auth/PrivateRoute';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ListLessonsComponent from './components/Lessons/ListLessonsComponent';
-import LessonContent from './components/Lessons/LessonContent';
 import { ToastContainer, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -55,10 +54,6 @@ function App() {
           <Route
             path='/update-word/:id'
             element={<PrivateRoute element={<WordsComponent />} isAuthenticated={isAuthenticated} />}
-          />
-          <Route
-            path='/lesson-content'
-            element={<PrivateRoute element={<LessonContent />} isAuthenticated={isAuthenticated} />}
           />
         </Routes>
         <ToastContainer transition={Zoom}/>
