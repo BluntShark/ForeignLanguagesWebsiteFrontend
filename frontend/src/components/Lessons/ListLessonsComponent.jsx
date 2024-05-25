@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { listLessons } from '../../services/LessonService'
+import { deleteLesson, listLessons } from '../../services/LessonService'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast, Zoom } from 'react-toastify';
@@ -12,12 +12,17 @@ const ListLessonsComponent = ({ userRole }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        getAllLessons();
+    }, [])
+
+
+    function getAllLessons(){
         listLessons().then((response) => {
             setLessons(response.data);
         }).catch(error => {
             console.error(error);
         })
-    }, [])
+    }
 
     const viewContent = (lessonId) => {
         console.log(lessonId);
@@ -28,6 +33,15 @@ const ListLessonsComponent = ({ userRole }) => {
     }
     const updateLesson = (id) => {
         navigate(`/update-lesson/${id}`);
+    }
+    const removeLesson = (id) => {
+        console.log(id);
+        deleteLesson(id).then((response) => {
+            console.log(response.data);
+            getAllLessons();
+          }).catch(error => {
+            console.error(error);
+        })
     }
 
   return (
@@ -61,8 +75,11 @@ const ListLessonsComponent = ({ userRole }) => {
                                 <td onClick={() => viewContent(lesson.id)}>{lesson.lessonCategory.title}</td>
                             )}
                             {userRole === 'ROLE_ADMIN' && 
-                            <td> 
+                            <td style={{textAlign: 'center'}}> 
                                 <button className='btn btn-secondary btn-sm' onClick={() => updateLesson(lesson.id)}> Изменить урок</button>
+                                <button className='btn btn-dark btn-sm' onClick={() => removeLesson(lesson.id)}
+                                    style={{marginLeft: '10px'}}
+                                > Удалить урок</button>
                             </td>}
                         </tr> 
                     )
