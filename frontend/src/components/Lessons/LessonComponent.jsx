@@ -14,6 +14,13 @@ const LessonComponent = () => {
   const [difficultyLevels, setDifficultyLevels] = useState([]);
   const [lessonCategories, setLessonCategories] = useState([]);
 
+  const [errors, setErrors] = useState({
+    title: '',
+    content: '',
+    dateOfCreation: '',
+    duration: ''
+  })
+
   const navigator = useNavigate();
 
   useEffect(() => {
@@ -52,13 +59,53 @@ const LessonComponent = () => {
 
   function saveLesson(e){
     e.preventDefault();
-    const lesson = { title, content, dateOfCreation, duration, difficultlyLevel, lessonCategory }
-    console.log(lesson);
+
+    if(validateForm()){
+      const lesson = { title, content, dateOfCreation, duration, difficultlyLevel, lessonCategory }
+      console.log(lesson);
 
     createLesson(lesson).then((response) => {
       console.log(response.data);
       navigator('/lessons');
     })
+    }
+  }
+
+  function validateForm(){
+    let valid = true;
+
+    const errorsCopy = {... errors}
+
+    if(title.trim()){
+      errorsCopy.title = '';
+    } else{
+      errorsCopy.title = 'Необходимо написать название';
+      valid = false;
+    }
+
+    if(content.trim()){
+      errorsCopy.content = '';
+    } else{
+      errorsCopy.content = 'Необходимо написать урок';
+      valid = false;
+    }
+
+    if(dateOfCreation.trim()){
+      errorsCopy.dateOfCreation = '';
+    } else{
+      errorsCopy.dateOfCreation = 'Необходимо написать дату создания';
+      valid = false;
+    }
+
+    if(duration.trim()){
+      errorsCopy.duration = '';
+    } else{
+      errorsCopy.duration = 'Необходимо написать длительность';
+      valid = false;
+    }
+
+    setErrors(errorsCopy);
+    return valid;
   }
 
   return (
@@ -69,7 +116,6 @@ const LessonComponent = () => {
           <h2 className='text-center'>Создать урок</h2>
           <div className='card-body'>
             <form>
-
             <div className='form-group mb-2 '>
                 <label className='form-label'> Название урока:</label>
                 <input
@@ -77,9 +123,10 @@ const LessonComponent = () => {
                 placeholder='Ввести название'
                 name='title'
                 value={title}
-                className='form-control'
+                className={errors.title ? 'is-invalid form-control' : 'form-control'}
                 onChange={handleTitle}
                 ></input>
+                {errors.title && <div className='invalid-feedback'> {errors.title}</div>}
               </div>
 
               <div className='form-group mb-2'>
@@ -89,9 +136,10 @@ const LessonComponent = () => {
                 placeholder='Ввести дату создания'
                 name='dateOfCreation'
                 value={dateOfCreation}
-                className='form-control'
+                className={errors.dateOfCreation ? 'is-invalid form-control' : 'form-control'}
                 onChange={handleDateOfCreation}
                 ></input>
+                {errors.dateOfCreation && <div className='invalid-feedback'> {errors.dateOfCreation}</div>}
               </div>
 
               <div className='form-group mb-2'>
@@ -101,9 +149,10 @@ const LessonComponent = () => {
                 placeholder='Ввести длиетльность урока'
                 name='duration'
                 value={duration}
-                className='form-control'
+                className={errors.duration ? 'is-invalid form-control' : 'form-control'}
                 onChange={handleDuration}
                 ></input>
+                {errors.duration && <div className='invalid-feedback'> {errors.duration}</div>}
               </div>
 
               <div className='form-group mb-2'>
@@ -144,9 +193,10 @@ const LessonComponent = () => {
                 name='content'
                 // value={content}
                 value={content}
-                className='form-control'
+                className={errors.content ? 'is-invalid form-control' : 'form-control'}
                 onChange={handleContent}
                 ></input>
+                {errors.content && <div className='invalid-feedback'> {errors.content}</div>}
               </div>
               <div className="d-grid gap-2 col-6 mx-auto">
                 <button className='btn btn-secondary border-radius-sm' onClick={saveLesson}> Отправить</button>
