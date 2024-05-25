@@ -109,6 +109,7 @@ const LessonComponent = () => {
     return valid;
 
   }
+  
   function pageTitle(){
     if(id){
       return <h2 className='text-center'>Редактировать урок</h2>
