@@ -1,6 +1,6 @@
 .card-container {
-    width: 15rem;
-    border: 1px solid rgb(107, 107, 107);
+    width: 16rem;
+    border: 2px solid rgb(107, 107, 107);
     background-color: rgb(231, 230, 233);
     box-shadow: 15px 15px 15px rgb(185, 184, 184);
     display: flex;

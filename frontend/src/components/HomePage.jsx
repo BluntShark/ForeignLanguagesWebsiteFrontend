@@ -1,9 +1,8 @@
 import React from 'react';
 import Home from './Home';
 import '../App.css';
-import dictionaryPicture from '../assets/dictionary.jpg';
-import lessonsPicture from '../assets/lessons.jpg';
-import testPicture from '../assets/tests.jpg';
+import dictionaryPicture from '../assets/dic.jpg';
+import lessonsPicture from '../assets/les.jpg';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
