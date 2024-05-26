@@ -19,179 +19,186 @@ const LessonComponent = () => {
     content: '',
     dateOfCreation: '',
     duration: ''
-  })
+  });
 
-  const navigator = useNavigate();
-  const {id} = useParams();
+  const navigate = useNavigate();
+  const { id } = useParams();
 
   useEffect(() => {
-    if(id){
-      getLesson(id).then((response) => {
-        setTitle(response.data.title);
-        setContent(response.data.content);
-        setDateOfCreation(response.data.dateOfCreation);
-        setDuration(response.data.duration);
-        setDifficultlyLevel(response.data.difficultlyLevel);
-        setLessonCategory(response.data.lessonCategory);
-      }).catch(error => {
-        console.error(error);
-      })
+    if (id) {
+      getLesson(id)
+        .then((response) => {
+          console.log('Lesson data:', response.data); // Отладочный вывод
+          setTitle(response.data.title);
+          setContent(response.data.content);
+          setDateOfCreation(response.data.dateOfCreation);
+          setDuration(response.data.duration);
+          setDifficultlyLevel(response.data.difficultlyLevel);
+          setLessonCategory(response.data.lessonCategory);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     }
-  }, [id])
+  }, [id]);
 
   useEffect(() => {
     listDifficultyLevels()
-      .then(response => setDifficultyLevels(response.data))
-      .catch(error => console.error('Error fetching difficulty levels:', error));
+      .then((response) => setDifficultyLevels(response.data))
+      .catch((error) => console.error('Error fetching difficulty levels:', error));
 
-      listLessonCategories()
-      .then(response => setLessonCategories(response.data))
-      .catch(error => console.error('Error fetching lesson categories:', error));
+    listLessonCategories()
+      .then((response) => setLessonCategories(response.data))
+      .catch((error) => console.error('Error fetching lesson categories:', error));
   }, []);
-
 
   function handleTitle(e) {
     setTitle(e.target.value);
   }
+
   function handleDateOfCreation(e) {
     setDateOfCreation(e.target.value);
   }
+
   function handleDuration(e) {
     setDuration(e.target.value);
   }
+
   function handleDifficultlyLevel(e) {
-    const selectLevel = difficultyLevels.find(level => level.id == e.target.value);
+    const selectLevel = difficultyLevels.find((level) => level.id == e.target.value);
     console.log(selectLevel);
     setDifficultlyLevel(selectLevel);
   }
+
   function handleLessonCategory(e) {
-    const selectCategory = lessonCategories.find(category => category.id == e.target.value)
+    const selectCategory = lessonCategories.find((category) => category.id == e.target.value);
     console.log(selectCategory);
     setLessonCategory(selectCategory);
   }
+
   function handleContent(e) {
     setContent(e.target.value);
   }
 
-  function saveOrUpdateLesson(e){
+  function saveOrUpdateLesson(e) {
     e.preventDefault();
 
-    if(validateForm()){
-      const lesson = { title, content, dateOfCreation, duration, difficultlyLevel, lessonCategory }
+    if (validateForm()) {
+      const lesson = { title, content, dateOfCreation, duration, difficultlyLevel, lessonCategory };
       console.log(lesson);
 
-      if(id){
-        updateLesson(id, lesson).then((response) => {
-          console.log(response.data);
-          navigator('/lessons');
-        }).catch(error => {
-          console.error(error);
-        })
+      if (id) {
+        updateLesson(id, lesson)
+          .then((response) => {
+            console.log(response.data);
+            navigate('/lessons');
+          })
+          .catch((error) => {
+            console.error(error);
+          });
       } else {
-        createLesson(lesson).then((response) => {
-          console.log(response.data);
-          navigator('/lessons');
-        }).catch(error => {
-          console.error(error);
-        })
+        createLesson(lesson)
+          .then((response) => {
+            console.log(response.data);
+            navigate('/lessons');
+          })
+          .catch((error) => {
+            console.error(error);
+          });
       }
-
     }
   }
 
-  function validateForm(){
+  function validateForm() {
     let valid = true;
 
-    const errorsCopy = {... errors}
+    const errorsCopy = { ...errors };
 
-    if(title.trim()){
+    if (title.trim()) {
       errorsCopy.title = '';
-    } else{
+    } else {
       errorsCopy.title = 'Необходимо написать название';
       valid = false;
     }
 
-    if(content.trim()){
+    if (content.trim()) {
       errorsCopy.content = '';
-    } else{
+    } else {
       errorsCopy.content = 'Необходимо написать урок';
       valid = false;
     }
 
-    if(dateOfCreation.trim()){
+    if (dateOfCreation.trim()) {
       errorsCopy.dateOfCreation = '';
-    } else{
+    } else {
       errorsCopy.dateOfCreation = 'Необходимо написать дату создания';
       valid = false;
     }
 
-    if(duration.trim()){
+    if (duration.trim()) {
       errorsCopy.duration = '';
-    } else{
+    } else {
       errorsCopy.duration = 'Необходимо написать длительность';
       valid = false;
     }
 
     setErrors(errorsCopy);
     return valid;
-
   }
 
-  function pageTitle(){
-    if(id){
-      return <h2 className='text-center'>Редактировать урок</h2>
-    }
-    else {
-      return <h2 className='text-center'>Создать урок</h2>
+  function pageTitle() {
+    if (id) {
+      return <h2 className='text-center'>Редактировать урок</h2>;
+    } else {
+      return <h2 className='text-center'>Создать урок</h2>;
     }
   }
 
   return (
     <div className='container'>
-      <br /><br />
-      <div className='row '>
+      <br />
+      <br />
+      <div className='row'>
         <div className='card-lesson col-md-6 offset-md-4 offset-md-3'>
-          {
-            pageTitle()
-          }
+          {pageTitle()}
           <div className='card-body'>
             <form>
-            <div className='form-group mb-2 '>
+              <div className='form-group mb-2'>
                 <label className='form-label'> Название урока:</label>
                 <input
-                type='text'
-                placeholder='Ввести название'
-                name='title'
-                value={title}
-                className={errors.title ? 'is-invalid form-control' : 'form-control'}
-                onChange={handleTitle}
-                ></input>
+                  type='text'
+                  placeholder='Ввести название'
+                  name='title'
+                  value={title}
+                  className={errors.title ? 'is-invalid form-control' : 'form-control'}
+                  onChange={handleTitle}
+                />
                 {errors.title && <div className='invalid-feedback'> {errors.title}</div>}
               </div>
 
               <div className='form-group mb-2'>
                 <label className='form-label'> Дата создания:</label>
                 <input
-                type='text'
-                placeholder='Ввести дату создания'
-                name='dateOfCreation'
-                value={dateOfCreation}
-                className={errors.dateOfCreation ? 'is-invalid form-control' : 'form-control'}
-                onChange={handleDateOfCreation}
-                ></input>
+                  type='text'
+                  placeholder='Ввести дату создания'
+                  name='dateOfCreation'
+                  value={dateOfCreation}
+                  className={errors.dateOfCreation ? 'is-invalid form-control' : 'form-control'}
+                  onChange={handleDateOfCreation}
+                />
                 {errors.dateOfCreation && <div className='invalid-feedback'> {errors.dateOfCreation}</div>}
               </div>
 
               <div className='form-group mb-2'>
                 <label className='form-label'> Длительность урока:</label>
                 <input
-                type='text'
-                placeholder='Ввести длиетльность урока'
-                name='duration'
-                value={duration}
-                className={errors.duration ? 'is-invalid form-control' : 'form-control'}
-                onChange={handleDuration}
-                ></input>
+                  type='text'
+                  placeholder='Ввести длительность урока'
+                  name='duration'
+                  value={duration}
+                  className={errors.duration ? 'is-invalid form-control' : 'form-control'}
+                  onChange={handleDuration}
+                />
                 {errors.duration && <div className='invalid-feedback'> {errors.duration}</div>}
               </div>
 
@@ -204,8 +211,10 @@ const LessonComponent = () => {
                   onChange={handleDifficultlyLevel}
                 >
                   <option value=''>Выберите уровень сложности</option>
-                  {difficultyLevels.map(level => (
-                    <option key={level.id} value={level.id}>{level.level}</option>
+                  {difficultyLevels.map((level) => (
+                    <option key={level.id} value={level.id}>
+                      {level.level}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -219,28 +228,32 @@ const LessonComponent = () => {
                   onChange={handleLessonCategory}
                 >
                   <option value=''>Выберите категорию урока</option>
-                  {lessonCategories.map(category => (
-                    <option key={category.id} value={category.id}>{category.title}</option>
+                  {lessonCategories.map((category) => (
+                    <option key={category.id} value={category.id}>
+                      {category.title}
+                    </option>
                   ))}
                 </select>
               </div>
 
               <div className='form-group mb-2'>
-                <label className='form-label'> Контент:</label>
-                <input
-                type='text'
-                placeholder='Введите контент урока'
-                name='content'
-                value={content}
-                className={errors.content ? 'is-invalid form-control' : 'form-control'}
-                onChange={handleContent}
-                ></input>
-                {errors.content && <div className='invalid-feedback'> {errors.content}</div>}
-              </div>
-              <div className="d-grid gap-2 col-6 mx-auto">
-                <button className='btn btn-secondary border-radius-sm' onClick={saveOrUpdateLesson}> Отправить</button>
-              </div>
-            </form>
+  <label className='form-label'>Контент:</label>
+  <textarea
+    placeholder='Введите контент урока'
+    name='content'
+    value={content}
+    className={errors.content ? 'is-invalid form-control' : 'form-control'}
+    onChange={handleContent}
+    style={{ height: '200px' }} // Задает точную высоту в пикселях
+  />
+  {errors.content && <div className='invalid-feedback'>{errors.content}</div>}
+</div>
+<div className='d-grid gap-2 col-6 mx-auto'>
+  <button className='btn btn-secondary border-radius-sm' onClick={saveOrUpdateLesson}>
+    Отправить
+  </button>
+</div>
+              </form>
           </div>
         </div>
       </div>

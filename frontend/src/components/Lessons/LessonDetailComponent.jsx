@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import parser from 'bbcode-to-react';
+import parser, { Tag } from 'bbcode-to-react';
+
 
 const LessonDetailComponent = () => {
     const { id } = useParams();
@@ -24,10 +25,9 @@ const LessonDetailComponent = () => {
     return (
         <div className='container'>
             <br />
-            {/* <p>{parser.toReact('[b]strong[/b] apple and hihihi pineapple')}</p> */}
-            <h2>{lesson.title}</h2>
-            <p>{lesson.content}</p>
-            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+            <h2 className='text-center'>{lesson.title}</h2>
+            <div>{parser.toReact(lesson.content)}</div>
+            <br /><br /><br /><br />
         </div>
     );
 }
