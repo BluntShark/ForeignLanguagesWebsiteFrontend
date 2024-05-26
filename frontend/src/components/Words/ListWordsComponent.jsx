@@ -3,10 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { deleteWord, listWords } from '../../services/WordService';
 import { ToastContainer, toast, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Modal from '../ModalWindow/Modal';
 
 const ListWordsComponent = ({ userRole }) => {
     const [words, setWords] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+
+    const [modalActive, setModalActive] = useState(true);
+
     const wordsPerPage = 6;
     const navigate = useNavigate();
 
@@ -115,6 +119,7 @@ const ListWordsComponent = ({ userRole }) => {
                 <button className='pagination-buttons' onClick={prevPage} disabled={currentPage === 1}>Предыдущий</button>
                 <button className='pagination-buttons' onClick={nextPage} disabled={currentPage === Math.ceil(words.length / wordsPerPage)}>Следующий</button>
             </div>
+            <Modal active={modalActive} setActive={setModalActive}/>
             <ToastContainer 
             transition={Zoom}
             />

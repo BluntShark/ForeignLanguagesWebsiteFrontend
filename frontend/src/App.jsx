@@ -13,6 +13,7 @@ import { ToastContainer, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import LessonComponent from './components/Lessons/LessonComponent';
 import LessonDetailComponent from './components/Lessons/LessonDetailComponent';
+
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userRole, setUserRole] = useState(null);
