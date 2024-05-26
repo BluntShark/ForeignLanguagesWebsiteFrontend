@@ -13,6 +13,7 @@ import { ToastContainer, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import LessonComponent from './components/Lessons/LessonComponent';
 import LessonDetailComponent from './components/Lessons/LessonDetailComponent';
+import ListTestsComponent from './components/Tests/ListTestsComponent';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -48,6 +49,10 @@ function App() {
           <Route
             path='/lessons'
             element={<PrivateRoute element={<ListLessonsComponent userRole={userRole} />} isAuthenticated={isAuthenticated} />}
+          />
+          <Route
+            path='/tests'
+            element={<PrivateRoute element={<ListTestsComponent userRole={userRole} />} isAuthenticated={isAuthenticated} />}
           />
           <Route
             path='/lessons/:id'

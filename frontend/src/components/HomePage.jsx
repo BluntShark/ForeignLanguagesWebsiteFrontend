@@ -27,7 +27,7 @@ export const HomePage = () => {
         />
         <Home 
           imgSrc={testPicture}
-          linkComp={"/lessons"}
+          linkComp={"/tests"}
           ingAlt={"Tests"}
           title={"Тесты"}
           description={"Проходите веселые тесты"}
