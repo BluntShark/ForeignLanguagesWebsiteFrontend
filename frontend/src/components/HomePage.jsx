@@ -25,13 +25,6 @@ export const HomePage = () => {
           title={"Уроки"}
           description={"Учите веселые уроки"}
         />
-        <Home 
-          imgSrc={testPicture}
-          linkComp={"/tests"}
-          ingAlt={"Tests"}
-          title={"Тесты"}
-          description={"Проходите веселые тесты"}
-        />
       </div>
       <ToastContainer />
     </div>

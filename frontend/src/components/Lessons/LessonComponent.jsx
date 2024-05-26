@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, {useState, useEffect} from 'react'
 import { createLesson, getLesson, listDifficultyLevels, listLessonCategories, updateLesson } from '../../services/LessonService';
 import { useNavigate, useParams } from 'react-router-dom';
-import parser from 'bbcode-to-react';
+
 
 const LessonComponent = () => {
 
@@ -231,7 +231,6 @@ const LessonComponent = () => {
                 type='text'
                 placeholder='Введите контент урока'
                 name='content'
-                // size="1000"
                 value={content}
                 className={errors.content ? 'is-invalid form-control' : 'form-control'}
                 onChange={handleContent}
