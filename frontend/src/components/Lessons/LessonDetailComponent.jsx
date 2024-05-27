@@ -27,7 +27,7 @@ const LessonDetailComponent = () => {
             <br />
             <h2 className='text-center'>{lesson.title}</h2>
             <div>{parser.toReact(lesson.content)}</div>
-            <br /><br /><br /><br />
+            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
         </div>
     );
 }

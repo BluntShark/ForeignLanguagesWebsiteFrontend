@@ -13,6 +13,7 @@
     "axios": "^1.6.8",
     "bbcode-to-react": "^0.2.9",
     "bootstrap": "^5.3.3",
+    "cors": "^2.8.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.1",
