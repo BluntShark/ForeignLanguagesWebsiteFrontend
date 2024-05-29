@@ -22,7 +22,7 @@ export const HomePage = () => {
           linkComp={"/lessons"}
           ingAlt={"Lessons"}
           title={"Уроки"}
-          description={"Учите веселые уроки"}
+          description={"Уроки"}
         />
       </div>
       <ToastContainer />

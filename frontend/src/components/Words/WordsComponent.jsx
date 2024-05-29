@@ -52,16 +52,6 @@ const WordsComponent = () => {
             if(id){
                 updateWord(id, word).then((response) => {
                     console.log(response.data);
-                    // toast.success('Слово успешно обновлено', {
-                    //     position: "top-right",
-                    //     autoClose: 2000,
-                    //     hideProgressBar: false,
-                    //     closeOnClick: true,
-                    //     pauseOnHover: true,
-                    //     draggable: true,
-                    //     progress: undefined,
-                    //     theme: "light"
-                    // });
                     navigator('/words')
                 }).catch(error => {
                     console.error(error);
@@ -79,16 +69,6 @@ const WordsComponent = () => {
             }else{
                 createWord(word).then((response) => {
                     console.log(response.data);
-                    // toast.success('Слово успешно добавлено', {
-                    //     position: "top-right",
-                    //     autoClose: 2000,
-                    //     hideProgressBar: false,
-                    //     closeOnClick: true,
-                    //     pauseOnHover: true,
-                    //     draggable: true,
-                    //     progress: undefined,
-                    //     theme: "light"
-                    // });
                     navigator('/words')
                 }).catch(error => {
                     console.error(error);

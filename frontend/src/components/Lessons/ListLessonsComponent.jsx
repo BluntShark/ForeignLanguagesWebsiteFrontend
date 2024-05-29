@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import { deleteLesson, listLessons } from '../../services/LessonService'
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -39,6 +38,20 @@ const ListLessonsComponent = ({ userRole }) => {
         deleteLesson(id).then((response) => {
             console.log(response.data);
             getAllLessons();
+            toast.promise(
+                new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        resolve();
+                    }, 1000);
+                }),
+                {
+                    pending: "Удаление...",
+                    success: "Урок удален"
+                },
+                {
+                    autoClose: 2000
+                }
+            )
           }).catch(error => {
             console.error(error);
         })
@@ -89,7 +102,7 @@ const ListLessonsComponent = ({ userRole }) => {
         <ToastContainer 
             transition={Zoom}
             />
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
     </div>
   )
 }

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import HeaderComponent from './components/HeaderComponent';
-import FooterComponent from './components/FooterComponent';
 import HomePage from './components/HomePage';
 import ListWordsComponent from './components/Words/ListWordsComponent';
 import WordsComponent from './components/Words/WordsComponent';
